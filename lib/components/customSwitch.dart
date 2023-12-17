@@ -37,8 +37,8 @@ class CustomSwitchState extends State<CustomSwitch> {
               widget.onToggle(value);
             });
           },
-          activeTrackColor: Colors.lightGreenAccent,
-          activeColor: Colors.green,
+          activeTrackColor: const Color.fromRGBO(0, 146, 63, 1),
+          activeColor: Colors.white,
         ),
         Text(
           widget.text,

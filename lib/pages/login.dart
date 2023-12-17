@@ -28,6 +28,23 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
+        leading: InkResponse(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          highlightShape: BoxShape.circle,
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Color.fromRGBO(60, 59, 79, 1),
+            ),
+          ),
+        ),
+        elevation: 0,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
