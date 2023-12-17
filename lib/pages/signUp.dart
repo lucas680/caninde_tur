@@ -10,6 +10,22 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  bool savePassword = false;
+
+  final formKey = GlobalKey<FormState>();
+
+  final cityController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final password2Controller = TextEditingController();
+
+  save() {
+    if (formKey.currentState!.validate()) {
+      Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 12),
                 Input(
+                  controller: cityController,
                   textPlaceholder: "Cidade",
                   onChange: (value) => {},
                   icon: Icons.location_on_outlined,
@@ -66,6 +83,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 12),
                 Input(
+                  controller: nameController,
                   textPlaceholder: "Nome",
                   onChange: (value) => {},
                   icon: Icons.person,
@@ -73,6 +91,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 12),
                 Input(
+                  controller: emailController,
                   textPlaceholder: "Email",
                   onChange: (value) => {},
                   icon: Icons.mail,
@@ -80,6 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 12),
                 Input(
+                  controller: passwordController,
                   textPlaceholder: "Senha",
                   onChange: (value) => {},
                   icon: Icons.lock,
@@ -88,6 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 const SizedBox(height: 12),
                 Input(
+                  controller: password2Controller,
                   textPlaceholder: "Confirmar Senha",
                   onChange: (value) => {},
                   icon: Icons.lock,

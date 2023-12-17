@@ -8,6 +8,8 @@ class Input extends StatefulWidget {
   final TextInputType type;
   final String invalidText;
   final bool required;
+  final TextEditingController controller;
+
 
   const Input({
     super.key,
@@ -17,6 +19,7 @@ class Input extends StatefulWidget {
     this.type = TextInputType.text,
     this.invalidText = 'Campo inválido',
     this.required = false,
+    required this.controller,
   });
 
   @override
@@ -25,34 +28,14 @@ class Input extends StatefulWidget {
 
 class InputState extends State<Input> {
   bool _obscureText = true;
-  bool _isFocused = false;
-  late FocusNode _focusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    _focusNode = FocusNode();
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      focusNode: _focusNode,
+      controller: widget.controller,
       keyboardType: widget.type,
       onChanged: (value) {
         widget.onChange(value);
-      },
-      onTapOutside: (sla) {
-        setState(() {
-          _isFocused = false;
-        });
-        FocusScope.of(context).requestFocus(FocusNode());
       },
       obscureText:
           widget.type == TextInputType.visiblePassword ? _obscureText : false,
@@ -62,10 +45,8 @@ class InputState extends State<Input> {
           children: [
             Text(
               widget.textPlaceholder,
-              style: TextStyle(
-                color: _isFocused
-                    ? const Color.fromRGBO(0, 146, 63, 1)
-                    : const Color.fromRGBO(151, 151, 151, 1),
+              style: const TextStyle(
+                color: Color.fromRGBO(151, 151, 151, 1),
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
               ),
@@ -84,9 +65,7 @@ class InputState extends State<Input> {
         prefixIcon: Icon(
           widget.icon,
           size: 20.0,
-          color: _isFocused
-              ? const Color.fromRGBO(0, 146, 63, 1)
-              : const Color.fromRGBO(228, 223, 223, 1),
+          color: const Color.fromRGBO(228, 223, 223, 1)
         ),
         suffixIcon: widget.type == TextInputType.visiblePassword
             ? IconButton(
@@ -95,16 +74,11 @@ class InputState extends State<Input> {
                       ? FontAwesomeIcons.eye
                       : FontAwesomeIcons.eyeSlash,
                   size: 20.0,
-                  color: _isFocused
-                      ? const Color.fromRGBO(0, 146, 63, 1)
-                      : const Color.fromRGBO(228, 223, 223, 1),
+                  color: const Color.fromRGBO(228, 223, 223, 1),
                 ),
                 onPressed: () {
                   setState(() {
                     _obscureText = !_obscureText;
-                    setState(() {
-                      _isFocused = true;
-                    });
                   });
                 },
               )
@@ -116,7 +90,7 @@ class InputState extends State<Input> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: Color.fromRGBO(0, 146, 63, 1)),
+          borderSide: const BorderSide(color: Color.fromRGBO(180, 175, 175, 1.0)),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -129,10 +103,8 @@ class InputState extends State<Input> {
         fillColor: Colors.transparent,
         filled: true,
       ),
-      style: TextStyle(
-        color: _isFocused
-            ? const Color.fromRGBO(0, 146, 63, 1)
-            : const Color.fromRGBO(151, 151, 151, 1),
+      style: const TextStyle(
+        color: Color.fromRGBO(151, 151, 151, 1),
         fontSize: 14,
         fontWeight: FontWeight.w400,
       ),
@@ -143,16 +115,7 @@ class InputState extends State<Input> {
         }
         return null;
       },
-      onTap: () {
-        setState(() {
-          _isFocused = true;
-        });
-      },
-      onFieldSubmitted: (value) {
-        setState(() {
-          _isFocused = false;
-        });
-      },
+      autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }
 }

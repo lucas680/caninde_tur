@@ -1,4 +1,8 @@
+import 'package:caninde_tur/pages/add.dart';
+import 'package:caninde_tur/pages/favorite.dart';
+import 'package:caninde_tur/pages/home.dart';
 import 'package:caninde_tur/pages/login.dart';
+import 'package:caninde_tur/pages/profile.dart';
 import 'package:caninde_tur/pages/signUp.dart';
 import 'package:caninde_tur/pages/splashScreen.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +24,10 @@ class MyApp extends StatelessWidget {
         'splashScreen': (context)=> const SplashScreenPage(),
         'login': (context)=> const LoginPage(),
         'signUp': (context)=> const SignUpPage(),
+        'home': (context)=> const HomePage(),
+        'add': (context)=> const AddPage(),
+        'favorite': (context)=> const FavoritePage(),
+        'profile': (context)=> const ProfilePage(),
       },
     );
   }
