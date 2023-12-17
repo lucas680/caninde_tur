@@ -1,4 +1,5 @@
 import 'package:caninde_tur/pages/login.dart';
+import 'package:caninde_tur/pages/signUp.dart';
 import 'package:caninde_tur/pages/splashScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'splashScreen': (context)=> const SplashScreenPage(),
         'login': (context)=> const LoginPage(),
+        'signUp': (context)=> const SignUpPage(),
       },
     );
   }

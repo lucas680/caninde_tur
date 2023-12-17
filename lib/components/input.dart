@@ -7,6 +7,7 @@ class Input extends StatefulWidget {
   final IconData icon;
   final TextInputType type;
   final String invalidText;
+  final bool required;
 
   const Input({
     super.key,
@@ -15,6 +16,7 @@ class Input extends StatefulWidget {
     required this.icon,
     this.type = TextInputType.text,
     this.invalidText = 'Campo inválido',
+    this.required = false,
   });
 
   @override
@@ -46,7 +48,7 @@ class InputState extends State<Input> {
       onChanged: (value) {
         widget.onChange(value);
       },
-      onTapOutside: (sla){
+      onTapOutside: (sla) {
         setState(() {
           _isFocused = false;
         });
@@ -55,13 +57,29 @@ class InputState extends State<Input> {
       obscureText:
           widget.type == TextInputType.visiblePassword ? _obscureText : false,
       decoration: InputDecoration(
-        hintText: widget.textPlaceholder,
-        hintStyle: TextStyle(
-          color: _isFocused
-              ? const Color.fromRGBO(0, 146, 63, 1)
-              : const Color.fromRGBO(151, 151, 151, 1),
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
+        label: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.textPlaceholder,
+              style: TextStyle(
+                color: _isFocused
+                    ? const Color.fromRGBO(0, 146, 63, 1)
+                    : const Color.fromRGBO(151, 151, 151, 1),
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            if(widget.required)
+              const Text(
+                " *",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+          ],
         ),
         prefixIcon: Icon(
           widget.icon,

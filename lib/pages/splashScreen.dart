@@ -13,7 +13,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, 'login');
+      Navigator.pushNamedAndRemoveUntil(context, 'login', (route) => false);
     });
   }
 

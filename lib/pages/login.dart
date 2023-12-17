@@ -1,5 +1,6 @@
 import 'package:caninde_tur/components/button.dart';
 import 'package:caninde_tur/components/input.dart';
+import 'package:caninde_tur/components/customSwitch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,6 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool savePassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +57,68 @@ class _LoginPageState extends State<LoginPage> {
                   icon: Icons.lock,
                   type: TextInputType.visiblePassword,
                 ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomSwitch(
+                      initialValue: savePassword,
+                      onToggle: (value) {
+                        setState(() {
+                          savePassword = value;
+                        });
+                      },
+                      text: "Lembrar-me",
+                    ),
+                    const Flexible(
+                      child: Text(
+                        "Esqueceu sua senha?",
+                        style: TextStyle(
+                          color: Color.fromRGBO(151, 151, 151, 1),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        overflow: TextOverflow.fade,
+                        textAlign: TextAlign.center,
+                      ),
+                    )
+                  ],
+                ),
                 const SizedBox(height: 20),
                 Button(text: "Entrar", onClick: () => {}),
-                // Adicione mais widgets aqui, se necessário
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Flexible(
+                      child: Text(
+                        "Ainda não tem conta?",
+                        style: TextStyle(
+                          color: Color.fromRGBO(151, 151, 151, 1),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, 'signUp');
+                      },
+                      child: const Text(
+                        "Fazer cadastro",
+                        style: TextStyle(
+                          color: Color.fromRGBO(0, 146, 63, 1),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        overflow: TextOverflow.fade,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
               ],
             ),
           ),
