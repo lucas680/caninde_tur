@@ -12,6 +12,7 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Color.fromRGBO(245, 245, 245, 1),
       body: Center(
         child: Text("Página em contrução!"),
       ),

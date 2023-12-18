@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.9
   font_awesome_flutter: ^10.6.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

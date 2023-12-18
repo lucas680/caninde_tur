@@ -13,6 +13,7 @@ class _AddPageState extends State<AddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(245, 245, 245, 1),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
